@@ -12,3 +12,7 @@ gemspec
 
 # To use debugger
 # gem 'ruby-debug'
+
+group :assets do
+  gem 'coffee-rails', "~> 3.1.0"
+end
