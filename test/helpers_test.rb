@@ -19,6 +19,13 @@ class Eastwood::HelpersTest < ActiveSupport::TestCase
     assert_equal @context.application_name, 'Dummy'
   end
   
+  # env
   
+  test "should define env" do
+    assert_respond_to @context, :env
+  end
+  test "should return the current environment" do
+    assert_equal @context.env, 'test'
+  end
   
 end
