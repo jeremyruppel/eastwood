@@ -26,12 +26,18 @@ Bundler::GemHelper.install_tasks
 
 require 'rake/testtask'
 
-Rake::TestTask.new(:test) do |t|
+Rake::TestTask.new(:test => :'cache:clear') do |t|
   t.libs << 'lib'
   t.libs << 'test'
   t.pattern = 'test/**/*_test.rb'
   t.verbose = false
 end
 
+namespace :cache do
+  desc "Clear out the cache"
+  task :clear do
+    FileUtils.rm_rf 'test/dummy/tmp/cache'
+  end
+end
 
 task :default => :test
