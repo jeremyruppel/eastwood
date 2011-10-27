@@ -1,3 +1,18 @@
 app = { env : '<%= env %>' }
 
+<% Rails.application.routes.routes.each do |r| %>
+<% if r.name %>
+# name: <%= r.name %>
+# conditions: <%= r.conditions %>
+# defaults: <%= r.defaults %>
+# path: <%= r.path %>
+# requirements: <%= r.requirements %>
+# verb: <%= r.verb %>
+# segment_keys: <%= r.segment_keys %>
+app.<%= r.name %>_path = ( <%= r.segment_keys.join ', ' %>='json' ) ->
+  "<%= r.path.delete( '()' ).gsub /:(\w+)/, '#{\1}' %>"
+
+<% end %>
+<% end %>
+
 window.<%= application_name %> = app
