@@ -6,5 +6,6 @@ class AssetTest < ActionDispatch::IntegrationTest
     get '/assets/eastwood.js'
     assert_response :success
     puts response.body
+    puts Rails.application
   end
 end
