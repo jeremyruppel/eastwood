@@ -1,7 +1,6 @@
 app = { env : '<%= env %>' }
 
-<% Rails.application.routes.routes.each do |r| %>
-<% if r.name %>
+<% named_routes.each do |r| %>
 # name: <%= r.name %>
 # conditions: <%= r.conditions %>
 # defaults: <%= r.defaults %>
@@ -12,7 +11,6 @@ app = { env : '<%= env %>' }
 app.<%= r.name %>_path = ( <%= r.segment_keys.join ', ' %>='json' ) ->
   "<%= r.path.delete( '()' ).gsub /:(\w+)/, '#{\1}' %>"
 
-<% end %>
 <% end %>
 
 window.<%= application_name %> = app

@@ -11,6 +11,10 @@ module Eastwood
       def env
         Rails.env
       end
+      
+      def named_routes
+        Rails.application.routes.routes.select { |r| r.name.present? }
+      end
     end
   end
 end
