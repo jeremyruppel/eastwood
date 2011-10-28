@@ -5,7 +5,7 @@ module Eastwood
     module InstanceMethods
       
       def application_name
-        Rails.application.engine_name.camelize.delete 'Application'
+        app.engine_name.camelize.delete 'Application'
       end
       
       def env
@@ -13,7 +13,13 @@ module Eastwood
       end
       
       def named_routes
-        Rails.application.routes.routes.select { |r| r.name.present? }
+        app.routes.routes.select { |r| r.name.present? }
+      end
+      
+      protected
+      
+      def app
+        Rails.application
       end
     end
   end
