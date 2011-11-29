@@ -8,8 +8,17 @@ app = { env : '<%= env %>' }
 # requirements: <%= r.requirements %>
 # verb: <%= r.verb %>
 # segment_keys: <%= r.segment_keys %>
+
+<% if r.segment_keys.empty? %>
+
+app.<%= r.name %>_path = -> "<%= r.path %>"
+
+<% else %>
+
 app.<%= r.name %>_path = ( <%= r.segment_keys.join ', ' %>='json' ) ->
   "<%= r.path.delete( '()' ).gsub /:(\w+)/, '#{\1}' %>"
+
+<% end %>
 
 <% end %>
 
