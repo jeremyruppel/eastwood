@@ -5,7 +5,7 @@ module Eastwood
     module InstanceMethods
 
       def application_name
-        app.engine_name.camelize
+        app.engine_name.camelize.sub /Application$/, ''
       end
 
       def env
@@ -14,6 +14,10 @@ module Eastwood
 
       def named_routes
         app.routes.routes.select { |r| r.name.present? }
+      end
+
+      def client_routes
+        Eastwood.routes.routes
       end
 
       protected

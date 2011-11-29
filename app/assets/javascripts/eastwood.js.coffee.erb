@@ -1,4 +1,4 @@
-app = { env : '<%= env %>' }
+app = env : '<%= env %>', routes : root_path : -> "/"
 
 <% named_routes.each do |r| %>
 # name: <%= r.name %>
@@ -9,17 +9,17 @@ app = { env : '<%= env %>' }
 # verb: <%= r.verb %>
 # segment_keys: <%= r.segment_keys %>
 
-<% if r.segment_keys.empty? %>
+<% unless r.segment_keys.empty? %>
 
-app.<%= r.name %>_path = -> "<%= r.path %>"
-
-<% else %>
-
-app.<%= r.name %>_path = ( <%= r.segment_keys.join ', ' %>='json' ) ->
+app.routes.<%= r.name %>_path = ( <%= r.segment_keys.join ', ' %>='json' ) ->
   "<%= r.path.delete( '()' ).gsub /:(\w+)/, '#{\1}' %>"
 
 <% end %>
 
 <% end %>
+
+###
+<%= client_routes.inspect %>
+###
 
 window.<%= application_name %> = app
