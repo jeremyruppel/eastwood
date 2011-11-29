@@ -1,5 +1,14 @@
-app = env : '<%= env %>', routes : root_path : -> "/"
+###*
+ * <%= application_name %> Client Settings
+ *
+ * Generated automatically by Eastwood and the Rails 3.1 Asset Pipeline
+###
+app = { env : '<%= env %>', routes : root_path : -> "/" }
 
+<% if named_routes.any? %>
+###*
+ * Server-side routing
+###
 <% named_routes.each do |r| %>
 # name: <%= r.name %>
 # conditions: <%= r.conditions %>
@@ -9,17 +18,28 @@ app = env : '<%= env %>', routes : root_path : -> "/"
 # verb: <%= r.verb %>
 # segment_keys: <%= r.segment_keys %>
 
-<% unless r.segment_keys.empty? %>
+<% unless r.segment_keys.empty? %> # root_path is already taken care of
 
 app.routes.<%= r.name %>_path = ( <%= r.segment_keys.join ', ' %>='json' ) ->
   "<%= r.path.delete( '()' ).gsub /:(\w+)/, '#{\1}' %>"
 
 <% end %>
-
+<% end %>
 <% end %>
 
+<% if client_routes.any? %>
+###*
+ * Client-side routing
 ###
-<%= client_routes.inspect %>
-###
+<% client_routes.each do |key, r| %>
 
+app.routes.<%= r.name %>_hash = ->
+  "<%= r.path %>"
+
+<% end %>
+<% end %>
+
+###*
+ * Export that shit!
+###
 window.<%= application_name %> = app
