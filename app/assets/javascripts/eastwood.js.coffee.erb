@@ -33,8 +33,12 @@ app.routes.<%= r.name %>_path = ( <%= r.segment_keys.join ', ' %>='json' ) ->
 ###
 <% client_routes.each do |key, r| %>
 
+<% if r.segment_keys.empty? %>
 app.routes.<%= r.name %>_hash = ->
-  "<%= r.path %>"
+<% else %>
+app.routes.<%= r.name %>_hash = ( <%= r.segment_keys.join ', ' %> ) ->
+<% end %>
+  "<%= r.path.gsub /:(\w+)/, '#{\1}' %>"
 
 <% end %>
 <% end %>
