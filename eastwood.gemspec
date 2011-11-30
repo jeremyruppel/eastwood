@@ -7,13 +7,13 @@ require "eastwood/version"
 Gem::Specification.new do |s|
   s.name        = "eastwood"
   s.version     = Eastwood::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Eastwood."
-  s.description = "TODO: Description of Eastwood."
+  s.authors     = ["Jeremy Ruppel"]
+  s.email       = ["jeremy.ruppel@gmail.com"]
+  s.homepage    = "https://github.com/jeremyruppel/eastwood"
+  s.summary     = "Start your client side out right"
+  s.description = "Start your client side out right"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.0"
