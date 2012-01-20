@@ -21,7 +21,7 @@ app = { env : '<%= env %>', routes : root_path : -> "/" }
 <% unless r.segment_keys.empty? %> # root_path is already taken care of
 
 app.routes.<%= r.name %>_path = ( <%= r.segment_keys.join ', ' %>='json' ) ->
-  "<%= r.path.delete( '()' ).gsub /:(\w+)/, '#{\1}' %>"
+  "<%= r.path.spec.to_s.delete( '()' ).gsub /:(\w+)/, '#{\1}' %>"
 
 <% end %>
 <% end %>
