@@ -14,5 +14,5 @@ gemspec
 # gem 'ruby-debug'
 
 group :assets do
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'coffee-rails', ">= 3.1.0"
 end
