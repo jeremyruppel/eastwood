@@ -1,43 +1,34 @@
 #!/usr/bin/env rake
-begin
-  require 'bundler/setup'
-rescue LoadError
-  puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
-end
-begin
-  require 'rdoc/task'
-rescue LoadError
-  require 'rdoc/rdoc'
-  require 'rake/rdoctask'
-  RDoc::Task = Rake::RDocTask
-end
 
-RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Eastwood'
-  rdoc.options << '--line-numbers'
-  rdoc.rdoc_files.include('README.rdoc')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
+require 'bundler/gem_tasks'
+require 'appraisal'
+require 'rspec/core/rake_task'
 
+namespace :eastwood do
 
-
-Bundler::GemHelper.install_tasks
-
-require 'rake/testtask'
-
-Rake::TestTask.new(:test => :'cache:clear') do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = false
-end
-
-namespace :cache do
-  desc "Clear out the cache"
-  task :clear do
-    FileUtils.rm_rf 'test/dummy/tmp/cache'
+  desc "Set up current environment variables"
+  task :env do
+    require 'rails/version'
+    ENV[ 'EASTWOOD_RAILS_NAME' ] = "rails-#{Rails::VERSION::STRING}"
+    ENV[ 'EASTWOOD_RAILS_PATH' ] = "spec/rails/#{ENV[ 'EASTWOOD_RAILS_NAME' ]}"
   end
+
+  desc "Remove all test rails apps"
+  task :clean => [ :env ] do
+    Dir[ 'spec/rails/rails-*' ].each do |app|
+      FileUtils.rm_rf app
+    end
+  end
+
+  desc "Create a test rails app if necessary"
+  task :rails do
+    if File.exist? ENV[ 'EASTWOOD_RAILS_PATH' ]
+      puts "Using existing #{ENV[ 'EASTWOOD_RAILS_NAME' ]} app"
+    else
+      sh "bundle exec rails new #{ENV[ 'EASTWOOD_RAILS_PATH' ]} -m spec/support/rails_template.rb"
+    end
+  end
+
 end
 
-task :default => :test
+RSpec::Core::RakeTask.new :spec => [ :'eastwood:env', :'eastwood:rails' ]
