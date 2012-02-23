@@ -1,8 +1,15 @@
 module Eastwood
-  autoload :Engine,  'eastwood/engine'
+  autoload :Config, 'eastwood/config'
+  autoload :Engine, 'eastwood/engine'
 
   class << self
+
+    def configure
+      yield self
+    end
   end
+
+  include Config
 end
 
 require 'eastwood/engine' if defined?(Rails)
