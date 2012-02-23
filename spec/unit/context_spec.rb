@@ -18,4 +18,18 @@ describe 'the Sprockets context class' do
     its( :env ) { should eq( Rails.env ) }
   end
 
+  describe '#routes' do
+    it { should respond_to( :routes ) }
+    its( :routes ) { should have( 2 ).items }
+    
+    # describe 'a route defined with `match`' do
+    #   subject { subject.routes[ :foo ] }
+    #
+    # end
+  end
+
+  describe '#hashes' do
+    it { should respond_to( :hashes ) }
+  end
+
 end
