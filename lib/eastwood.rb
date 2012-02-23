@@ -1,6 +1,7 @@
 module Eastwood
-  autoload :Config, 'eastwood/config'
-  autoload :Engine, 'eastwood/engine'
+  autoload :Config,  'eastwood/config'
+  autoload :Context, 'eastwood/context'
+  autoload :Engine,  'eastwood/engine'
 
   class << self
 
