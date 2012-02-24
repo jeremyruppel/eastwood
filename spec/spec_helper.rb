@@ -14,6 +14,7 @@ require 'config/environment'
 # Require test dependencies *after* rails
 require 'rspec/rails'
 require 'shoulda'
+require 'execjs'
 
 # Define some helpers
 module ResponseBodyHelper

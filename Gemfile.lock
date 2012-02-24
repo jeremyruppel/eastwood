@@ -119,6 +119,7 @@ PLATFORMS
 DEPENDENCIES
   appraisal (= 0.4.1)
   eastwood!
+  execjs (= 1.3.0)
   rspec-rails (= 2.8.1)
   shoulda
   sqlite3
