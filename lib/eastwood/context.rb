@@ -11,6 +11,15 @@ module Eastwood
       def path
         route.path.spec.to_s.delete '()'
       end
+      def coffee_name
+        "#{name}_path"
+      end
+      def coffee_args
+        "#{parts.join( ', ' )}='json'"
+      end
+      def coffee_path
+        path.gsub /:(\w+)/, '#{\1}'
+      end
     end
 
     def app
