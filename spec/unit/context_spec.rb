@@ -34,6 +34,9 @@ describe 'routes' do
   describe 'foo' do
     subject { context.routes[ :foo ] }
 
-    its( :name ){ should eq( 'foo' ) }
+    its( :name  ){ should eq( 'foo' ) }
+    its( :verb  ){ should eq( 'GET' ) }
+    its( :path  ){ should eq( '/foo.:format' ) }
+    its( :parts ){ should eq( [ :format ] ) }
   end
 end

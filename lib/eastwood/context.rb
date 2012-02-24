@@ -2,9 +2,17 @@ module Eastwood
   module Context
 
     class Route < Struct.new( :route )
-
       def name
         route.name
+      end
+      def verb
+        'GET'
+      end
+      def parts
+        route.parts
+      end
+      def path
+        route.path.spec.to_s.delete '()'
       end
     end
 
