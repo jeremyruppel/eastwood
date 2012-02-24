@@ -11,7 +11,8 @@ gem 'eastwood'
 route "mount Eastwood::Engine => '/eastwood'"
 
 # Create a couple of test routes
-route "match '/foo' => 'bar#baz', :as => 'foo'"
+route "match '/foo'        => 'bar#baz', :as => 'match'"
+route "match '/foo/:id'    => 'bar#baz', :as => 'match_with_segment'"
 
 # Create the eastwood initializer
 # initializer 'eastwood.rb', <<-CODE

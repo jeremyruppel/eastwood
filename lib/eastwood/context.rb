@@ -5,9 +5,6 @@ module Eastwood
       def name
         route.name
       end
-      def verb
-        'GET'
-      end
       def parts
         route.parts
       end

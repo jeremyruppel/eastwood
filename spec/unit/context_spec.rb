@@ -31,12 +31,19 @@ end
 describe 'routes' do
   let( :context ){ Rails.application.assets.context_class.new nil, nil, nil }
 
-  describe 'foo' do
-    subject { context.routes[ :foo ] }
+  describe 'match' do
+    subject { context.routes[ :match ] }
 
-    its( :name  ){ should eq( 'foo' ) }
-    its( :verb  ){ should eq( 'GET' ) }
+    its( :name  ){ should eq( 'match' ) }
     its( :path  ){ should eq( '/foo.:format' ) }
     its( :parts ){ should eq( [ :format ] ) }
+  end
+
+  describe 'match with segment' do
+    subject { context.routes[ :match_with_segment ] }
+
+    its( :name  ){ should eq( 'match_with_segment' ) }
+    its( :path  ){ should eq( '/foo/:id.:format' ) }
+    its( :parts ){ should eq( [ :id, :format ] ) }
   end
 end
