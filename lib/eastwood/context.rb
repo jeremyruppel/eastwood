@@ -15,7 +15,7 @@ module Eastwood
         "#{name}_path"
       end
       def coffee_args
-        "#{parts.join( ', ' )}='json'"
+        parts.any? ? "#{parts.join( ', ' )}='json'" : ''
       end
       def coffee_path
         path.gsub /:(\w+)/, '#{\1}'

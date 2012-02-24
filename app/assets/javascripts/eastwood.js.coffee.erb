@@ -1,11 +1,15 @@
 ###*
  * eastwood.js - <%= app %>
 ###
-app = env : <%= env %>, routes : { }
+app = { env : "<%= env %>", routes : { } }
 
 ###*
  * Routes
 ###
+<% routes.each do |key, route| %>
+app.routes.<%= route.coffee_name %> = ( <%= route.coffee_args %> ) ->
+  "<%= route.coffee_path %>"
+<% end %>
 
 ###*
  * Hashes

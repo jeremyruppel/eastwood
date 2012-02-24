@@ -7,5 +7,7 @@ describe 'eastwood.js' do
 
     response.status.should eq( 200 )
     response.content_type.should eq( 'text/javascript' )
+
+    puts response.body
   end
 end
