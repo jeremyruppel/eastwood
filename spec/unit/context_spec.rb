@@ -51,8 +51,8 @@ describe 'routes' do
     its( :parts ){ should eq( [ :format ] ) }
 
     its( :coffee_name ){ should eq( 'match_path' ) }
-    its( :coffee_path ){ should eq( '/foo.#{format}' ) }
-    its( :coffee_args ){ should eq( "format='json'" ) }
+    its( :coffee_path ){ should eq( '/foo#{format}' ) }
+    its( :coffee_args ){ should eq( "format='.json'" ) }
   end
 
   describe 'match with segment' do
@@ -63,8 +63,8 @@ describe 'routes' do
     its( :parts ){ should eq( [ :id, :format ] ) }
 
     its( :coffee_name ){ should eq( 'match_with_segment_path' ) }
-    its( :coffee_path ){ should eq( '/foo/#{id}.#{format}' ) }
-    its( :coffee_args ){ should eq( "id, format='json'" ) }
+    its( :coffee_path ){ should eq( '/foo/#{id}#{format}' ) }
+    its( :coffee_args ){ should eq( "id, format='.json'" ) }
   end
 end
 

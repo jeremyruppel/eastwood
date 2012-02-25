@@ -15,10 +15,10 @@ module Eastwood
         "#{name}_path"
       end
       def coffee_args
-        parts.any? ? "#{parts.join( ', ' )}='json'" : ''
+        parts.any? ? "#{parts.join( ', ' )}='.json'" : ''
       end
       def coffee_path
-        path.gsub /:(\w+)/, '#{\1}'
+        path.delete( '.' ).gsub /:(\w+)/, '#{\1}'
       end
     end
 
