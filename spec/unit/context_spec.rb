@@ -94,4 +94,16 @@ describe 'hashes' do
     its( :coffee_path ){ should eq( '#/users/#{id}' ) }
     its( :coffee_args ){ should eq( "id" ) }
   end
+
+  describe 'post' do
+    subject { context.hashes[ :post ] }
+
+    its( :name  ){ should eq( 'post' ) }
+    its( :path  ){ should eq( '#/users/:id/posts/:slug' ) }
+    its( :parts ){ should eq( [ :id, :slug ] ) }
+
+    its( :coffee_name ){ should eq( 'post_hash' ) }
+    its( :coffee_path ){ should eq( '#/users/#{id}/posts/#{slug}' ) }
+    its( :coffee_args ){ should eq( "id, slug" ) }
+  end
 end

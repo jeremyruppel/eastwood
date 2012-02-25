@@ -19,5 +19,6 @@ initializer 'eastwood.rb', <<-CODE
 Eastwood.configure do |config|
   config.hash :home, '#/home'
   config.hash :user, '#/users/:id'
+  config.hash :post, '#/users/:id/posts/:slug'
 end
 CODE
