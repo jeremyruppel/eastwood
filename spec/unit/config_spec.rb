@@ -16,11 +16,14 @@ describe Eastwood do
   describe '#hash' do
     it { should respond_to( :hash ) }
 
-    it 'should add a new hash' do
-      Eastwood.hash :foo, '#/bar'
+    describe 'adding a hash' do
+      before do
+        Eastwood.hash :foo, '#/bar'
+      end
 
-      Eastwood.hashes.should have_key( :foo )
-      Eastwood.hashes[ :foo ].should eq( '#/bar' )
+      subject { Eastwood.hashes }
+
+      it { should include( :foo => '#/bar' ) }
     end
   end
 end
