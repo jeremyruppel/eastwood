@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Eastwood do
 
-  context '#configure' do
+  describe '#configure' do
 
     it { should respond_to( :configure ) }
 
@@ -10,6 +10,17 @@ describe Eastwood do
       Eastwood.configure do |config|
         config.should eq( Eastwood )
       end
+    end
+  end
+
+  describe '#hash' do
+    it { should respond_to( :hash ) }
+
+    it 'should add a new hash' do
+      Eastwood.hash :foo, '#/bar'
+
+      Eastwood.hashes.should have_key( :foo )
+      Eastwood.hashes[ :foo ].should eq( '#/bar' )
     end
   end
 end

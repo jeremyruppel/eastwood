@@ -17,7 +17,6 @@ describe 'eastwood.js' do
   end
 
   describe 'eastwood_engine_path' do
-
     it 'should be defined' do
       context.eval( "typeof #{routes}.eastwood_engine_path" ).should eq( 'function' )
     end
@@ -47,6 +46,15 @@ describe 'eastwood.js' do
     end
     it 'should accept a format to override' do
       context.call( "#{routes}.match_with_segment_path", 'bar', 'html' ).should eq( '/foo/bar.html' )
+    end
+  end
+
+  describe 'home_hash' do
+    it 'should be defined' do
+      context.eval( "typeof #{routes}.home_hash" ).should eq( 'function' )
+    end
+    it 'should return the correct hash' do
+      context.call( "#{routes}.home_hash" ).should eq( '#/home' )
     end
   end
 end

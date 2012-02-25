@@ -15,6 +15,9 @@ route "match '/foo'        => 'bar#baz', :as => 'match'"
 route "match '/foo/:id'    => 'bar#baz', :as => 'match_with_segment'"
 
 # Create the eastwood initializer
-# initializer 'eastwood.rb', <<-CODE
-# # TODO write the initializer
-# CODE
+initializer 'eastwood.rb', <<-CODE
+Eastwood.configure do |config|
+  config.hash :home, '#/home'
+  config.hash :user, '#/users/:id'
+end
+CODE
