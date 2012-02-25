@@ -57,4 +57,13 @@ describe 'eastwood.js' do
       context.call( "#{routes}.home_hash" ).should eq( '#/home' )
     end
   end
+
+  describe 'user_hash' do
+    it 'should be defined' do
+      context.eval( "typeof #{routes}.user_hash" ).should eq( 'function' )
+    end
+    it 'should return the correct hash' do
+      context.call( "#{routes}.user_hash", 'foo' ).should eq( '#/users/foo' )
+    end
+  end
 end

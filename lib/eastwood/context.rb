@@ -27,7 +27,7 @@ module Eastwood
         key.to_s
       end
       def parts
-        [ ]
+        hash.scan( /:(\w+)/ ).flatten.map &:to_sym
       end
       def path
         hash
@@ -36,10 +36,10 @@ module Eastwood
         "#{name}_hash"
       end
       def coffee_args
-        ''
+        parts.join ', '
       end
       def coffee_path
-        path
+        path.gsub /:(\w+)/, '#{\1}'
       end
     end
 

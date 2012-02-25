@@ -82,4 +82,16 @@ describe 'hashes' do
     its( :coffee_path ){ should eq( '#/home' ) }
     its( :coffee_args ){ should eq( '' ) }
   end
+
+  describe 'user' do
+    subject { context.hashes[ :user ] }
+
+    its( :name  ){ should eq( 'user' ) }
+    its( :path  ){ should eq( '#/users/:id' ) }
+    its( :parts ){ should eq( [ :id ] ) }
+
+    its( :coffee_name ){ should eq( 'user_hash' ) }
+    its( :coffee_path ){ should eq( '#/users/#{id}' ) }
+    its( :coffee_args ){ should eq( "id" ) }
+  end
 end
