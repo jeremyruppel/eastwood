@@ -32,7 +32,7 @@ describe 'routes' do
   let( :context ){ Rails.application.assets.context_class.new nil, nil, nil }
 
   describe 'eastwood_engine' do
-    subject { context.routes[ :eastwood_engine] }
+    subject { context.routes[ :eastwood_engine ] }
 
     its( :name  ){ should eq( 'eastwood_engine' ) }
     its( :path  ){ should eq( '/eastwood' ) }
@@ -65,5 +65,21 @@ describe 'routes' do
     its( :coffee_name ){ should eq( 'match_with_segment_path' ) }
     its( :coffee_path ){ should eq( '/foo/#{id}.#{format}' ) }
     its( :coffee_args ){ should eq( "id, format='json'" ) }
+  end
+end
+
+describe 'hashes' do
+  let( :context ){ Rails.application.assets.context_class.new nil, nil, nil }
+
+  describe 'home' do
+    subject { context.hashes[ :home ] }
+
+    its( :name  ){ should eq( 'home' ) }
+    its( :path  ){ should eq( '#/home' ) }
+    its( :parts ){ should eq( [ ] ) }
+
+    its( :coffee_name ){ should eq( 'home_hash' ) }
+    its( :coffee_path ){ should eq( '#/home' ) }
+    its( :coffee_args ){ should eq( '' ) }
   end
 end

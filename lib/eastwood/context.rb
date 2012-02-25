@@ -22,6 +22,27 @@ module Eastwood
       end
     end
 
+    class HashRoute < Struct.new( :key, :hash )
+      def name
+        key.to_s
+      end
+      def parts
+        [ ]
+      end
+      def path
+        hash
+      end
+      def coffee_name
+        "#{name}_hash"
+      end
+      def coffee_args
+        ''
+      end
+      def coffee_path
+        path
+      end
+    end
+
     def app
       Rails.application.class.name.split( '::' ).first
     end
@@ -34,14 +55,21 @@ module Eastwood
       # TODO would kind of like to find a better way to transform
       # these values into my routes, but keep as a hash
       # http://www.ruby-forum.com/topic/185611
-      named_routes.merge( named_routes ) { |name, route| Route.new route }
+      named_routes.merge( named_routes ) { |key, route| Route.new route }
     end
 
     def hashes
-      [ ] # TODO
+      # TODO would kind of like to find a better way to transform
+      # these values into my routes, but keep as a hash
+      # http://www.ruby-forum.com/topic/185611
+      named_hashes.merge( named_hashes ){ |key, hash| HashRoute.new key, hash }
     end
 
     protected
+
+    def named_hashes
+      Eastwood.hashes
+    end
 
     def named_routes
       Rails.application.routes.named_routes.routes
