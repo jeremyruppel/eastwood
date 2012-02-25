@@ -2,6 +2,10 @@ module Eastwood
   module Config
     extend ActiveSupport::Concern
 
+    included do
+      reset!
+    end
+
     module ClassMethods
 
       def hash( name, route )
@@ -10,6 +14,12 @@ module Eastwood
 
       def hashes
         @@hashes ||= Hash.new
+      end
+
+      mattr_accessor :default_route_format
+
+      def reset!
+        @@default_route_format = :json
       end
     end
   end

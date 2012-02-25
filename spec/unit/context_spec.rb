@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'the Sprockets context class' do
-
   subject { Rails.application.assets.context_class.new nil, nil, nil }
 
   it 'should have Eastwood::Context mixed in' do

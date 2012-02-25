@@ -31,4 +31,8 @@ RSpec.configure do |config|
   config.formatter = :documentation
   # Include those helpers
   config.include ResponseBodyHelper
+  # Reset Eastwood after each test
+  config.after do
+    Eastwood.reset!
+  end
 end

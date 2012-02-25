@@ -33,7 +33,7 @@ describe 'eastwood.js' do
       context.call( "#{routes}.match_path" ).should eq( '/foo.json' )
     end
     it 'should accept a format to override' do
-      context.call( "#{routes}.match_path", 'html' ).should eq( '/foo.html' )
+      context.call( "#{routes}.match_path", '.html' ).should eq( '/foo.html' )
     end
   end
 
@@ -45,7 +45,7 @@ describe 'eastwood.js' do
       context.call( "#{routes}.match_with_segment_path", 'bar' ).should eq( '/foo/bar.json' )
     end
     it 'should accept a format to override' do
-      context.call( "#{routes}.match_with_segment_path", 'bar', 'html' ).should eq( '/foo/bar.html' )
+      context.call( "#{routes}.match_with_segment_path", 'bar', '.html' ).should eq( '/foo/bar.html' )
     end
   end
 
