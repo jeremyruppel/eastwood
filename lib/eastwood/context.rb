@@ -1,6 +1,27 @@
 module Eastwood
   module Context
 
+    class ActionRoute < Struct.new( :route, :format )
+      def name
+        route.name
+      end
+      def parts
+        route.segment_keys
+      end
+      def path
+        route.path.delete '()'
+      end
+      def coffee_name
+        "#{name}_path"
+      end
+      def coffee_args
+        parts.any? ? "#{parts.join( ', ' )}='#{format}'" : ''
+      end
+      def coffee_path
+        path.delete( '.' ).gsub /:(\w+)/, '#{\1}'
+      end
+    end
+
     class JourneyRoute < Struct.new( :route, :format )
       def name
         route.name
@@ -59,7 +80,7 @@ module Eastwood
       # TODO would kind of like to find a better way to transform
       # these values into my routes, but keep as a hash
       # http://www.ruby-forum.com/topic/185611
-      named_routes.merge( named_routes ) { |key, route| JourneyRoute.new route, route_format }
+      named_routes.merge( named_routes ) { |key, route| ActionRoute.new route, route_format }
     end
 
     def hashes
