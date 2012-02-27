@@ -12,10 +12,6 @@ describe 'eastwood.js' do
   describe 'the response' do
     subject { response }
 
-    before do
-      puts response.body
-    end
-
     its( :status ){ should eq( 200 ) }
     its( :content_type ){ should eq( 'text/javascript' ) }
   end
