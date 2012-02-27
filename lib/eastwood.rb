@@ -2,6 +2,7 @@ module Eastwood
   autoload :Config,  'eastwood/config'
   autoload :Context, 'eastwood/context'
   autoload :Engine,  'eastwood/engine'
+  autoload :Rails,   'eastwood/rails'
 
   class << self
 
@@ -11,6 +12,7 @@ module Eastwood
   end
 
   include Config
+  include Rails
 end
 
-require 'eastwood/engine' if defined?(Rails)
+require 'eastwood/engine' if defined?(::Rails)

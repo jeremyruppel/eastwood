@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'the Sprockets context class' do
-  subject { Rails.application.assets.context_class.new nil, nil, nil }
+  subject { ::Rails.application.assets.context_class.new nil, nil, nil }
 
   it 'should have Eastwood::Context mixed in' do
     subject.class.ancestors.should include( Eastwood::Context )
@@ -9,12 +9,20 @@ describe 'the Sprockets context class' do
 
   describe '#app' do
     it { should respond_to( :app ) }
-    its( :app ){ should eq( Rails.application.class.name.split( '::' ).first ) }
+
+    it 'should delegate to Eastwood.application_name' do
+      Eastwood.should_receive :application_name
+      subject.app
+    end
   end
 
   describe '#env' do
     it { should respond_to( :env ) }
-    its( :env ){ should eq( Rails.env ) }
+
+    it 'should delegate to Eastwood.env' do
+      Eastwood.should_receive :env
+      subject.env
+    end
   end
 
   describe '#routes' do
@@ -58,7 +66,7 @@ describe 'the Sprockets context class' do
 end
 
 describe 'routes' do
-  let( :context ){ Rails.application.assets.context_class.new nil, nil, nil }
+  let( :context ){ ::Rails.application.assets.context_class.new nil, nil, nil }
 
   describe 'eastwood_engine' do
     subject { context.routes[ :eastwood_engine ] }
@@ -98,7 +106,7 @@ describe 'routes' do
 end
 
 describe 'hashes' do
-  let( :context ){ Rails.application.assets.context_class.new nil, nil, nil }
+  let( :context ){ ::Rails.application.assets.context_class.new nil, nil, nil }
 
   describe 'home' do
     subject { context.hashes[ :home ] }
