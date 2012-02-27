@@ -1,5 +1,5 @@
 module Eastwood
-  class Engine < Rails::Engine
+  class Engine < ::Rails::Engine
 
     initializer 'eastwood.setup' do |app|
       # include helpers in the sprockets context

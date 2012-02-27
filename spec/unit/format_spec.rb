@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'route formatting' do
 
   describe 'setting the default route format' do
-    subject { Rails.application.assets.context_class.new nil, nil, nil }
+    subject { ::Rails.application.assets.context_class.new nil, nil, nil }
 
     it { should respond_to( :route_format ) }
 
@@ -45,7 +45,7 @@ describe 'route formatting' do
   end
 
   describe 'including the format in routes' do
-    let( :context ){ Rails.application.assets.context_class.new nil, nil, nil }
+    let( :context ){ ::Rails.application.assets.context_class.new nil, nil, nil }
     subject { context.routes[ :match ] }
 
     context 'default format' do

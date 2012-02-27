@@ -65,11 +65,11 @@ module Eastwood
     end
 
     def app
-      Rails.application.class.name.split( '::' ).first
+      ::Rails.application.class.name.split( '::' ).first
     end
 
     def env
-      Rails.env
+      ::Rails.env
     end
 
     def target
@@ -80,7 +80,7 @@ module Eastwood
       # TODO would kind of like to find a better way to transform
       # these values into my routes, but keep as a hash
       # http://www.ruby-forum.com/topic/185611
-      named_routes.merge( named_routes ) { |key, route| ActionRoute.new route, route_format }
+      named_routes.merge( named_routes ) { |key, route| route_class.new route, route_format }
     end
 
     def hashes
@@ -96,6 +96,10 @@ module Eastwood
 
     protected
 
+    def route_class
+      defined?(Journey) ? JourneyRoute : ActionRoute
+    end
+
     def omit_route_format?
       [ '', false ].include? Eastwood.default_route_format
     end
@@ -105,7 +109,7 @@ module Eastwood
     end
 
     def named_routes
-      Rails.application.routes.named_routes.routes
+      ::Rails.application.routes.named_routes.routes
     end
   end
 end
