@@ -32,3 +32,11 @@ namespace :eastwood do
 end
 
 RSpec::Core::RakeTask.new :spec => [ :'eastwood:env', :'eastwood:rails' ]
+
+desc "Run specs for all supported rails versions"
+task :all do
+  exec 'rake appraisal spec'
+end
+
+desc "Default: Clean, install dependencies, and run specs"
+task :default => [ :'eastwood:clean', :'appraisal:install', :all ]
