@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    eastwood (0.3.0)
+    eastwood (0.3.2)
       coffee-rails
       rails
 
