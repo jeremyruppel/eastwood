@@ -7,7 +7,7 @@ describe 'eastwood.js' do
   end
 
   let( :context ){ ExecJS.compile response.body }
-  let( :routes ){ "window.Rails320.routes" }
+  let( :routes ){ "window.Rails310.routes" }
 
   describe 'the response' do
     subject { response }
