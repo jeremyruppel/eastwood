@@ -48,6 +48,8 @@ the Eastwood javascript will give you something like this available on `window`:
 		}
 	}
 
+> This namespace is also a great place to put the rest of your client-side code!
+
 Configuration
 -------------
 
