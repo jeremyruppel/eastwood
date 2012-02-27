@@ -5,6 +5,7 @@ module Eastwood
     module ClassMethods
 
       def application_name
+        # TODO store
         ::Rails.application.class.name.split( '::' ).first
       end
 

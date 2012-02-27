@@ -9,19 +9,11 @@ describe Eastwood do
 
   describe '#env' do
     it { should respond_to( :env ) }
-
-    it 'should delegate to the rails env' do
-      ::Rails.should_receive :env
-      Eastwood.env
-    end
+    it { should delegate( :env ).to( ::Rails, :env ) }
   end
 
   describe '#named_routes' do
     it { should respond_to( :named_routes ) }
-
-    it 'should delegate to the rails named routes' do
-      ::Rails.application.routes.named_routes.should_receive :routes
-      Eastwood.named_routes
-    end
+    it { should delegate( :named_routes ).to( ::Rails.application.routes.named_routes, :routes ) }
   end
 end

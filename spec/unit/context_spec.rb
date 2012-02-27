@@ -9,20 +9,12 @@ describe 'the Sprockets context class' do
 
   describe '#app' do
     it { should respond_to( :app ) }
-
-    it 'should delegate to Eastwood.application_name' do
-      Eastwood.should_receive :application_name
-      subject.app
-    end
+    it { should delegate( :app ).to( Eastwood, :application_name ) }
   end
 
   describe '#env' do
     it { should respond_to( :env ) }
-
-    it 'should delegate to Eastwood.env' do
-      Eastwood.should_receive :env
-      subject.env
-    end
+    it { should delegate( :env ).to( Eastwood, :env ) }
   end
 
   describe '#routes' do

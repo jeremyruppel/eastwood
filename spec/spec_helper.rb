@@ -36,3 +36,19 @@ RSpec.configure do |config|
     Eastwood.reset!
   end
 end
+
+RSpec::Matchers.define :delegate do |method|
+  match do |delegate|
+    delegate.send method
+  end
+  chain :to do |receiver, method|
+    @receiver, @method = receiver, method
+    @receiver.should_receive( @method ){ true }
+  end
+  description do
+    "delegate ##{method} to #{@receiver}##{@method}"
+  end
+  failure_message_for_should do |delegate|
+    "expected that #{delegate}##{method} would delegate to #{@receiver}##{@method}"
+  end
+end
