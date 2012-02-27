@@ -65,11 +65,11 @@ module Eastwood
     end
 
     def app
-      ::Rails.application.class.name.split( '::' ).first
+      Eastwood.application_name
     end
 
     def env
-      ::Rails.env
+      Eastwood.env
     end
 
     def target
@@ -109,7 +109,7 @@ module Eastwood
     end
 
     def named_routes
-      ::Rails.application.routes.named_routes.routes
+      Eastwood.named_routes
     end
   end
 end
