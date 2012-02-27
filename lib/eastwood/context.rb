@@ -51,6 +51,10 @@ module Eastwood
       Rails.env
     end
 
+    def target
+      env === 'test' ? '( @window = { } )' : 'window'
+    end
+
     def routes
       # TODO would kind of like to find a better way to transform
       # these values into my routes, but keep as a hash

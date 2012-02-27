@@ -22,5 +22,4 @@ app.routes.<%= route.coffee_name %> = ( <%= route.coffee_args %> ) ->
 ###*
  * Export
 ###
-@window ||= { } # For ExecJS
-@window.<%= app %> = app
+<%= target %>.<%= app %> = app

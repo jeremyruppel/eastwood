@@ -24,6 +24,36 @@ describe 'the Sprockets context class' do
 
   describe '#hashes' do
     it { should respond_to( :hashes ) }
+    its( :hashes ){ should be_a( Hash ) }
+  end
+
+  describe '#target' do
+    it { should respond_to( :target ) }
+
+    context 'when #env is development' do
+      before do
+        subject.stub( :env ){ 'development' }
+      end
+      its( :target ){ should eq( 'window' ) }
+    end
+    context 'when #env is test' do
+      before do
+        subject.stub( :env ){ 'test' }
+      end
+      its( :target ){ should eq( '( @window = { } )' ) }
+    end
+    context 'when #env is production' do
+      before do
+        subject.stub( :env ){ 'production' }
+      end
+      its( :target ){ should eq( 'window' ) }
+    end
+    context 'when #env is something completely different' do
+      before do
+        subject.stub( :env ){ 'foo' }
+      end
+      its( :target ){ should eq( 'window' ) }
+    end
   end
 end
 
