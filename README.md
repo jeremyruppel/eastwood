@@ -3,6 +3,8 @@ Eastwood
 
 > Start your client side out right.
 
+[![Build Status](https://secure.travis-ci.org/jeremyruppel/eastwood.png)](http://travis-ci.org/jeremyruppel/eastwood)
+
 About
 -----
 
