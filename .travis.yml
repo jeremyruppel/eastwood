@@ -1,4 +1,7 @@
 language: ruby
 rvm:
   - 1.9.3
+gemfiles:
+  - gemfiles/rails-3.1.0.gemfile
+  - gemfiles/rails-3.2.0.gemfile
 script: rake appraisal spec
