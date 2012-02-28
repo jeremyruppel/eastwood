@@ -16,6 +16,14 @@ module Eastwood
         @@hashes ||= Hash.new
       end
 
+      def export( *args )
+        exports.merge! *args
+      end
+
+      def exports
+        @@exports ||= Hash.new
+      end
+
       mattr_accessor :default_route_format
 
       def reset!

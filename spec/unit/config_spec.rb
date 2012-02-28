@@ -38,6 +38,31 @@ describe Eastwood do
     end
   end
 
+  describe '#export' do
+    it { should respond_to( :export ) }
+
+    describe 'adding exports' do
+      before do
+        Eastwood.export :foo => 'bar', :baz => 'qux'
+      end
+
+      subject { Eastwood.exports }
+
+      it { should include( :foo => 'bar', :baz => 'qux' ) }
+    end
+
+    describe 'overwriting an export' do
+      before do
+        Eastwood.export :foo => 'bar'
+        Eastwood.export :foo => 'baz'
+      end
+
+      subject { Eastwood.exports }
+
+      it { should include( :foo => 'baz' ) }
+    end
+  end
+
   describe '#default_route_format' do
     it { should respond_to( :default_route_format ) }
 

@@ -1,5 +1,5 @@
 PATH
-  remote: /Users/jeremyruppel/Git/eastwood
+  remote: /Users/jeremy.ruppel/Git/eastwood
   specs:
     eastwood (0.3.2)
       coffee-rails
