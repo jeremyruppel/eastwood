@@ -14,17 +14,12 @@ app.exports =
 ###*
  * Routes
 ###
+app.routes =
 <% routes.each do |key, route| %>
-app.routes.<%= route.coffee_name %> = ( <%= route.coffee_args %> ) ->
-  "<%= route.coffee_path %>"
+  <%= route.coffee_name %> : ( <%= route.coffee_args %> ) -> "<%= route.coffee_path %>"
 <% end %>
-
-###*
- * Hashes
-###
 <% hashes.each do |key, route| %>
-app.routes.<%= route.coffee_name %> = ( <%= route.coffee_args %> ) ->
-  "<%= route.coffee_path %>"
+  <%= route.coffee_name %> : ( <%= route.coffee_args %> ) -> "<%= route.coffee_path %>"
 <% end %>
 
 ###*
