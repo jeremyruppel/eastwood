@@ -74,6 +74,15 @@ Eastwood can include arbitrary "routes" for the client-side too. In your configu
 This will give you `foo_hash` and `bar_hash` as functions in `MyApp.routes`, with all segments
 interpolated as you would expect.
 
+Exports
+-------
+
+Eastwood can also export arbitrary values to the client side:
+
+	Eastwood.configure do |config|
+		config.export :foo => 'bar', :baz => 123.45
+	end
+
 Reloading
 ---------
 
