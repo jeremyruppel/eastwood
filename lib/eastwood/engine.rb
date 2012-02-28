@@ -6,10 +6,6 @@ module Eastwood
       app.assets.context_class.instance_eval do
         include Eastwood::Context
       end
-      # watch for changes in eastwood initializer
-      if app.config.respond_to? :watchable_files
-        app.config.watchable_files << 'config/initializers/eastwood.rb'
-      end
     end
   end
 end

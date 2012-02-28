@@ -1,3 +1,7 @@
+# Start simplecov instrumentation
+require 'simplecov'
+SimpleCov.start
+
 # Set the environment variables for the test app
 ENV[ 'RAILS_ENV' ] = 'test'
 # ENV[ 'RAILS_ROOT' ] =

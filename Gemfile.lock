@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    eastwood (0.3.2)
+    eastwood (0.3.4)
       coffee-rails
       rails
 
@@ -101,6 +101,10 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.8.0)
     shoulda (2.11.3)
+    simplecov (0.6.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -122,4 +126,5 @@ DEPENDENCIES
   execjs (= 1.3.0)
   rspec-rails (= 2.8.1)
   shoulda
+  simplecov (= 0.6.1)
   sqlite3

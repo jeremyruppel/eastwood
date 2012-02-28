@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '2.8.1'
   s.add_development_dependency 'shoulda'
   s.add_development_dependency 'execjs', '1.3.0'
+  s.add_development_dependency 'simplecov', '0.6.1'
 end
