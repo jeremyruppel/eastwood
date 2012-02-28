@@ -83,6 +83,26 @@ Eastwood can also export arbitrary values to the client side:
 		config.export :foo => 'bar', :baz => 123.45
 	end
 
+Pro Tips
+--------
+
+Eastwood plays *really* well with [Sammy.js](http://sammyjs.org/):
+
+	# include all of our eastwood routes as sammy helpers
+	@helpers MyApp.routes
+
+	# ...
+
+	# use our eastwood routes in the event context
+	@render @clients_path( 'wal' ), result, -> $( '#clients' ).html @content
+
+Eastwood also plays really well with client-side templating solutions that treat
+functions like first-class citizens like, *ahem*, [walrus](https://github.com/jeremyruppel/walrus):
+
+	<li>
+		<a href="{{@clients_path( 'html' )}}">Clients</a>
+	</li>
+
 Reloading
 ---------
 
