@@ -4,6 +4,12 @@ module Eastwood
   autoload :Engine,  'eastwood/engine'
   autoload :Rails,   'eastwood/rails'
 
+  module Context
+    autoload :ActionRoute,  'eastwood/context/action_route'
+    autoload :JourneyRoute, 'eastwood/context/journey_route'
+    autoload :HashRoute,    'eastwood/context/hash_route'
+  end
+
   class << self
 
     def configure
