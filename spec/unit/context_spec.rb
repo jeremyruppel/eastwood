@@ -27,6 +27,11 @@ describe 'the Sprockets context class' do
     its( :hashes ){ should be_a( Hash ) }
   end
 
+  describe '#exports' do
+    it { should respond_to( :exports ) }
+    it { should delegate( :exports ).to( Eastwood, :exports ) }
+  end
+
   describe '#target' do
     it { should respond_to( :target ) }
 

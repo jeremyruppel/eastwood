@@ -90,6 +90,10 @@ module Eastwood
       named_hashes.merge( named_hashes ){ |key, hash| HashRoute.new key, hash }
     end
 
+    def exports
+      Eastwood.exports
+    end
+
     def route_format
       omit_route_format? ? '' : ".#{Eastwood.default_route_format.to_s}"
     end

@@ -6,8 +6,10 @@ describe 'eastwood.js' do
     get '/assets/eastwood.js'
   end
 
-  let( :context ){ ExecJS.compile response.body }
-  let( :routes ){ "window.#{Eastwood.application_name}.routes" }
+  let( :context   ){ ExecJS.compile response.body          }
+  let( :namespace ){ "window.#{Eastwood.application_name}" }
+  let( :routes    ){ "#{namespace}.routes"                 }
+  let( :exports   ){ "#{namespace}.exports"                }
 
   describe 'the response' do
     subject { response }
@@ -73,6 +75,12 @@ describe 'eastwood.js' do
     end
     it 'should return the correct hash' do
       context.call( "#{routes}.post_hash", 'foo', 'bar' ).should eq( '#/users/foo/posts/bar' )
+    end
+  end
+
+  describe 'exports' do
+    it 'should be defined' do
+      context.eval( "typeof #{exports}" ).should eq( 'object' )
     end
   end
 end
