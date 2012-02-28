@@ -26,6 +26,5 @@ module Eastwood
         path.delete( '.' ).gsub /:(\w+)/, '#{\1}'
       end
     end
-
   end
 end
