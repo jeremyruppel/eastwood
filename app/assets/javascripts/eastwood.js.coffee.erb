@@ -1,11 +1,15 @@
 ###*
  * eastwood.js - <%= app %>
 ###
-app = { env : "<%= env %>", exports : { }, routes : { } }
+app = { env : "<%= env %>", routes : { } }
 
 ###*
  * Exports
 ###
+app.exports =
+<% exports.each do |key, value| %>
+  <%= key.to_s %> : <%= value.is_a?( String ) ? "'#{value}'" : value %>
+<% end %>
 
 ###*
  * Routes

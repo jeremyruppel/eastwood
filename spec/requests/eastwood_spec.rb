@@ -82,5 +82,14 @@ describe 'eastwood.js' do
     it 'should be defined' do
       context.eval( "typeof #{exports}" ).should eq( 'object' )
     end
+    it 'should export strings properly' do
+      context.eval( "#{exports}.string" ).should eq( 'foo' )
+    end
+    it 'should export floats properly' do
+      context.eval( "#{exports}.float" ).should eq( 123.45 )
+    end
+    it 'should export booleans properly' do
+      context.eval( "#{exports}.boolean" ).should eq( true )
+    end
   end
 end
