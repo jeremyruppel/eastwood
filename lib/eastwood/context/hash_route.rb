@@ -1,6 +1,7 @@
 module Eastwood
   module Context
     class HashRoute < Struct.new( :key, :hash )
+      include RouteHelpers
 
       def name
         key.to_s
@@ -15,7 +16,7 @@ module Eastwood
       end
 
       def coffee_name
-        "#{name}_hash"
+        style "#{name}_hash"
       end
 
       def coffee_args

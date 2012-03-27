@@ -70,4 +70,12 @@ describe Eastwood do
       Eastwood.default_route_format.should eq( :json )
     end
   end
+
+  describe '#default_route_style' do
+    it { should respond_to( :javascript_route_style ) }
+
+    it 'should default to :underscore' do
+      Eastwood.javascript_route_style.should eq( :underscore )
+    end
+  end
 end

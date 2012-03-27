@@ -1,6 +1,7 @@
 module Eastwood
   module Context
     class ActionRoute < Struct.new( :route, :format )
+      include RouteHelpers
 
       def name
         route.name
@@ -15,7 +16,7 @@ module Eastwood
       end
 
       def coffee_name
-        "#{name}_path"
+        style "#{name}_path"
       end
 
       def coffee_args
