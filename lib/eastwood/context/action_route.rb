@@ -1,6 +1,7 @@
 module Eastwood
   module Context
     class ActionRoute < Struct.new( :route, :format )
+      include RouteHelpers
 
       def name
         route.name
@@ -15,12 +16,7 @@ module Eastwood
       end
 
       def coffee_name
-        case Eastwood.javascript_route_style.to_sym
-        when :underscore
-          "#{name}_path".underscore
-        when :camelcase
-          "#{name}_path".camelcase :lower
-        end
+        style "#{name}_path"
       end
 
       def coffee_args

@@ -8,6 +8,7 @@ module Eastwood
     autoload :ActionRoute,  'eastwood/context/action_route'
     autoload :JourneyRoute, 'eastwood/context/journey_route'
     autoload :HashRoute,    'eastwood/context/hash_route'
+    autoload :RouteHelpers, 'eastwood/context/route_helpers'
   end
 
   class << self
