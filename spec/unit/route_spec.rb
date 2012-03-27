@@ -29,6 +29,17 @@ shared_examples 'a route adapter' do
     end
     its( :coffee_name ){ should eq( 'fooPath' ) }
   end
+
+  context 'when javascript_route_style is set to anything else' do
+    before do
+      Eastwood.javascript_route_style = :foo
+    end
+    it 'should raise an error' do
+      expect {
+        subject.coffee_name
+      }.to raise_error Eastwood::InvalidRouteStyleError
+    end
+  end
 end
 
 describe Eastwood::Context::ActionRoute do

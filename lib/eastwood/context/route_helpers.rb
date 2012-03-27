@@ -8,6 +8,8 @@ module Eastwood
           route.underscore
         when :camelcase
           route.camelcase :lower
+        else
+          raise InvalidRouteStyleError
         end
       end
     end

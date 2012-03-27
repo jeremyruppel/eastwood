@@ -20,6 +20,9 @@ module Eastwood
 
   include Config
   include Rails
+
+  class EastwoodError < StandardError; end
+  class InvalidRouteStyleError < EastwoodError; end
 end
 
 require 'eastwood/engine' if defined?(::Rails)
