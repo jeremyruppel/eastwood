@@ -15,7 +15,12 @@ module Eastwood
       end
 
       def coffee_name
-        "#{name}_path"
+        case Eastwood.javascript_route_style.to_sym
+        when :underscore
+          "#{name}_path".underscore
+        when :camelcase
+          "#{name}_path".camelcase :lower
+        end
       end
 
       def coffee_args

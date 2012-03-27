@@ -13,9 +13,22 @@ shared_examples 'a route adapter' do
   its( :name        ){ should eq( 'foo' )                         }
   its( :parts       ){ should eq( [ :bar, :baz, :format ] )       }
   its( :path        ){ should eq( '/foo/:bar/:baz.:format' )      }
-  its( :coffee_name ){ should eq( 'foo_path' )                    }
   its( :coffee_args ){ should eq( "bar, baz, format='json'" )     }
   its( :coffee_path ){ should eq( '/foo/#{bar}/#{baz}#{format}' ) }
+
+  context 'when javascript_route_style is :underscore' do
+    before do
+      Eastwood.javascript_route_style = :underscore
+    end
+    its( :coffee_name ){ should eq( 'foo_path' ) }
+  end
+
+  context 'when javascript_route_style is :camelcase' do
+    before do
+      Eastwood.javascript_route_style = :camelcase
+    end
+    its( :coffee_name ){ should eq( 'fooPath' ) }
+  end
 end
 
 describe Eastwood::Context::ActionRoute do
