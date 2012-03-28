@@ -16,7 +16,7 @@ module Eastwood
       end
 
       def coffee_name
-        style "#{name}_hash"
+        style_for_javascript "#{name}_hash"
       end
 
       def coffee_args

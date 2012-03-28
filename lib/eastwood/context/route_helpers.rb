@@ -2,7 +2,7 @@ module Eastwood
   module Context
     module RouteHelpers
 
-      def style( route )
+      def style_for_javascript( route )
         case Eastwood.javascript_route_style.to_sym
         when :underscore
           route.underscore

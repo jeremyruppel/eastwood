@@ -16,7 +16,7 @@ module Eastwood
       end
 
       def coffee_name
-        style "#{name}_path"
+        style_for_javascript "#{name}_path"
       end
 
       def coffee_args
