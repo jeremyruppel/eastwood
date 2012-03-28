@@ -3,7 +3,7 @@ PATH
   specs:
     eastwood (0.3.6)
       coffee-rails
-      rails
+      rails (>= 3.1.0)
 
 GEM
   remote: http://rubygems.org/
