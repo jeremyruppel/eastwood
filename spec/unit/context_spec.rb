@@ -9,7 +9,15 @@ describe 'the Sprockets context class' do
 
   describe '#app' do
     it { should respond_to( :app ) }
-    it { should delegate( :app ).to( Eastwood, :application_name ) }
+    context 'by default' do
+      its( :app ){ should eq( Eastwood.application_name ) }
+    end
+    context 'when overridden' do
+      before do
+        Eastwood.javascript_namespace = 'FooBar'
+      end
+      its( :app ){ should eq( Eastwood.javascript_namespace ) }
+    end
   end
 
   describe '#env' do

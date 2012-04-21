@@ -2,7 +2,7 @@ module Eastwood
   module Context
 
     def app
-      Eastwood.application_name
+      Eastwood.javascript_namespace or Eastwood.application_name
     end
 
     def env

@@ -71,11 +71,19 @@ describe Eastwood do
     end
   end
 
-  describe '#default_route_style' do
+  describe '#javascript_route_style' do
     it { should respond_to( :javascript_route_style ) }
 
     it 'should default to :underscore' do
       Eastwood.javascript_route_style.should eq( :underscore )
+    end
+  end
+
+  describe '#javascript_namespace' do
+    it { should respond_to( :javascript_namespace ) }
+
+    it 'should default to nil' do
+      Eastwood.javascript_namespace.should eq( nil )
     end
   end
 end

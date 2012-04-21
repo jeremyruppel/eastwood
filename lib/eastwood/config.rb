@@ -26,10 +26,12 @@ module Eastwood
 
       mattr_accessor :default_route_format
       mattr_accessor :javascript_route_style
+      mattr_accessor :javascript_namespace
 
       def reset!
         @@default_route_format   = :json
         @@javascript_route_style = :underscore
+        @@javascript_namespace   = nil
       end
     end
   end
