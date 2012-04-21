@@ -13,14 +13,14 @@ module Eastwood
       env === 'test' ? '( @window = { } )' : 'window'
     end
 
-    def routes
+    def server_routes
       # TODO would kind of like to find a better way to transform
       # these values into my routes, but keep as a hash
       # http://www.ruby-forum.com/topic/185611
       named_routes.merge( named_routes ) { |key, route| route_class.new route, route_format }
     end
 
-    def hashes
+    def client_routes
       # TODO would kind of like to find a better way to transform
       # these values into my routes, but keep as a hash
       # http://www.ruby-forum.com/topic/185611

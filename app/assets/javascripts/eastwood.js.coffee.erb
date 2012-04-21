@@ -16,12 +16,12 @@ app.exports =
 ###*
  * Routes
 ###
-<% if routes.any? or hashes.any? %>
+<% if server_routes.any? or client_routes.any? %>
 app.routes =
-<% routes.each do |key, route| %>
+<% server_routes.each do |key, route| %>
   <%= route.coffee_name %> : ( <%= route.coffee_args %> ) -> "<%= route.coffee_path %>"
 <% end %>
-<% hashes.each do |key, route| %>
+<% client_routes.each do |key, route| %>
   <%= route.coffee_name %> : ( <%= route.coffee_args %> ) -> "<%= route.coffee_path %>"
 <% end %>
 <% end %>

@@ -25,14 +25,14 @@ describe 'the Sprockets context class' do
     it { should delegate( :env ).to( Eastwood, :env ) }
   end
 
-  describe '#routes' do
-    it { should respond_to( :routes ) }
-    its( :routes ){ should be_a( Hash ) }
+  describe '#server_routes' do
+    it { should respond_to( :server_routes ) }
+    its( :server_routes ){ should be_a( Hash ) }
   end
 
-  describe '#hashes' do
-    it { should respond_to( :hashes ) }
-    its( :hashes ){ should be_a( Hash ) }
+  describe '#client_routes' do
+    it { should respond_to( :client_routes ) }
+    its( :client_routes ){ should be_a( Hash ) }
   end
 
   describe '#exports' do
@@ -70,11 +70,11 @@ describe 'the Sprockets context class' do
   end
 end
 
-describe 'routes' do
+describe 'sever routes' do
   let( :context ){ ::Rails.application.assets.context_class.new nil, nil, nil }
 
   describe 'eastwood_engine' do
-    subject { context.routes[ :eastwood_engine ] }
+    subject { context.server_routes[ :eastwood_engine ] }
 
     its( :name  ){ should eq( 'eastwood_engine' ) }
     its( :path  ){ should eq( '/eastwood' ) }
@@ -86,7 +86,7 @@ describe 'routes' do
   end
 
   describe 'match' do
-    subject { context.routes[ :match ] }
+    subject { context.server_routes[ :match ] }
 
     its( :name  ){ should eq( 'match' ) }
     its( :path  ){ should eq( '/foo.:format' ) }
@@ -98,7 +98,7 @@ describe 'routes' do
   end
 
   describe 'match with segment' do
-    subject { context.routes[ :match_with_segment ] }
+    subject { context.server_routes[ :match_with_segment ] }
 
     its( :name  ){ should eq( 'match_with_segment' ) }
     its( :path  ){ should eq( '/foo/:id.:format' ) }
@@ -110,11 +110,11 @@ describe 'routes' do
   end
 end
 
-describe 'hashes' do
+describe 'client routes' do
   let( :context ){ ::Rails.application.assets.context_class.new nil, nil, nil }
 
   describe 'home' do
-    subject { context.hashes[ :home ] }
+    subject { context.client_routes[ :home ] }
 
     its( :name  ){ should eq( 'home' ) }
     its( :path  ){ should eq( '#/home' ) }
@@ -126,7 +126,7 @@ describe 'hashes' do
   end
 
   describe 'user' do
-    subject { context.hashes[ :user ] }
+    subject { context.client_routes[ :user ] }
 
     its( :name  ){ should eq( 'user' ) }
     its( :path  ){ should eq( '#/users/:id' ) }
@@ -138,7 +138,7 @@ describe 'hashes' do
   end
 
   describe 'post' do
-    subject { context.hashes[ :post ] }
+    subject { context.client_routes[ :post ] }
 
     its( :name  ){ should eq( 'post' ) }
     its( :path  ){ should eq( '#/users/:id/posts/:slug' ) }

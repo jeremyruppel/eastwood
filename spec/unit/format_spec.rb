@@ -46,7 +46,7 @@ describe 'route formatting' do
 
   describe 'including the format in routes' do
     let( :context ){ ::Rails.application.assets.context_class.new nil, nil, nil }
-    subject { context.routes[ :match ] }
+    subject { context.server_routes[ :match ] }
 
     context 'default format' do
       its( :coffee_args ){ should eq( "format='.json'" ) }
