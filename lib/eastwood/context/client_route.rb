@@ -1,6 +1,6 @@
 module Eastwood
   module Context
-    class HashRoute < Struct.new( :key, :hash )
+    class ClientRoute < Struct.new( :key, :hash )
       include RouteHelpers
 
       def name

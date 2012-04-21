@@ -16,6 +16,10 @@ module Eastwood
         @@hashes ||= Hash.new
       end
 
+      def custom_routes
+        hashes.dup
+      end
+
       def export( *args )
         exports.merge! *args
       end

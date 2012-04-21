@@ -7,7 +7,7 @@ module Eastwood
   module Context
     autoload :ActionRoute,  'eastwood/context/action_route'
     autoload :JourneyRoute, 'eastwood/context/journey_route'
-    autoload :HashRoute,    'eastwood/context/hash_route'
+    autoload :ClientRoute,  'eastwood/context/client_route'
     autoload :RouteHelpers, 'eastwood/context/route_helpers'
   end
 

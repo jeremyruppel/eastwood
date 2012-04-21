@@ -24,7 +24,7 @@ module Eastwood
       # TODO would kind of like to find a better way to transform
       # these values into my routes, but keep as a hash
       # http://www.ruby-forum.com/topic/185611
-      named_hashes.merge( named_hashes ){ |key, hash| HashRoute.new key, hash }
+      custom_routes.merge( custom_routes ){ |key, hash| ClientRoute.new key, hash }
     end
 
     def exports
@@ -45,8 +45,8 @@ module Eastwood
       [ '', false ].include? Eastwood.default_route_format
     end
 
-    def named_hashes
-      Eastwood.hashes
+    def custom_routes
+      Eastwood.custom_routes
     end
 
     def named_routes

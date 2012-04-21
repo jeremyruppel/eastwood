@@ -21,6 +21,10 @@ Eastwood.configure do |config|
   config.hash :user, '#/users/:id'
   config.hash :post, '#/users/:id/posts/:slug'
 
+  # config.path :about, '/about'
+
+  # config.url :google, 'http://www.google.com/search'
+
   config.export :string  => 'foo',
                 :float   => 123.45,
                 :boolean => true
