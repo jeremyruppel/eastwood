@@ -9,15 +9,19 @@ module Eastwood
     module ClassMethods
 
       def hash( name, route )
-        hashes[ name ] = route
+        hashes[ name ] = [ route, 'hash' ]
       end
 
-      def hashes
-        @@hashes ||= Hash.new
+      def path( name, route )
+        paths[ name ] = [ route, 'path' ]
+      end
+
+      def url( name, route )
+        urls[ name ] = [ route, 'url' ]
       end
 
       def custom_routes
-        hashes.dup
+        hashes.merge paths.merge urls
       end
 
       def export( *args )
@@ -36,6 +40,20 @@ module Eastwood
         @@default_route_format   = :json
         @@javascript_route_style = :underscore
         @@javascript_namespace   = nil
+      end
+
+      protected
+
+      def hashes
+        @@hashes ||= Hash.new
+      end
+
+      def paths
+        @@paths ||= Hash.new
+      end
+
+      def urls
+        @@urls ||= Hash.new
       end
     end
   end

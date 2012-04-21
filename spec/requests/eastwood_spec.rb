@@ -78,6 +78,24 @@ describe 'eastwood.js' do
     end
   end
 
+  describe 'about_path' do
+    it 'should be defined' do
+      context.eval( "typeof #{routes}.about_path" ).should eq( 'function' )
+    end
+    it 'should return the correct path' do
+      context.call( "#{routes}.about_path", 'foo' ).should eq( '/about/foo' )
+    end
+  end
+
+  describe 'google_url' do
+    it 'should be defined' do
+      context.eval( "typeof #{routes}.google_url" ).should eq( 'function' )
+    end
+    it 'should return the correct url' do
+      context.call( "#{routes}.google_url" ).should eq( 'http://www.google.com/search' )
+    end
+  end
+
   describe 'exports' do
     it 'should be defined' do
       context.eval( "typeof #{exports}" ).should eq( 'object' )

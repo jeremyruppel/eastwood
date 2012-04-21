@@ -1,6 +1,6 @@
 module Eastwood
   module Context
-    class ClientRoute < Struct.new( :key, :hash )
+    class ClientRoute < Struct.new( :key, :route, :suffix )
       include RouteHelpers
 
       def name
@@ -8,15 +8,15 @@ module Eastwood
       end
 
       def parts
-        hash.scan( /:(\w+)/ ).flatten.map &:to_sym
+        route.scan( /:(\w+)/ ).flatten.map &:to_sym
       end
 
       def path
-        hash
+        route
       end
 
       def coffee_name
-        style_for_javascript "#{name}_hash"
+        style_for_javascript "#{name}_#{suffix}"
       end
 
       def coffee_args

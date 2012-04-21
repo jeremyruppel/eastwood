@@ -29,12 +29,40 @@ describe Eastwood do
 
     describe 'adding a hash' do
       before do
-        Eastwood.hash :foo, '#/bar'
+        Eastwood.hash :myhash, '#/bar'
       end
 
-      subject { Eastwood.hashes }
+      subject { Eastwood.custom_routes }
 
-      it { should include( :foo => '#/bar' ) }
+      it { should include( :myhash => [ '#/bar', 'hash' ] ) }
+    end
+  end
+
+  describe '#path' do
+    it { should respond_to( :path ) }
+
+    describe 'adding a path' do
+      before do
+        Eastwood.path :mypath, '/foo/bar'
+      end
+
+      subject { Eastwood.custom_routes }
+
+      it { should include( :mypath => [ '/foo/bar', 'path' ] ) }
+    end
+  end
+
+  describe '#url' do
+    it { should respond_to( :url ) }
+
+    describe 'adding a url' do
+      before do
+        Eastwood.url :myurl, 'http://www.foo.com'
+      end
+
+      subject { Eastwood.custom_routes }
+
+      it { should include( :myurl => [ 'http://www.foo.com', 'url' ] ) }
     end
   end
 
