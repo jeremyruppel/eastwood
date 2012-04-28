@@ -19,11 +19,8 @@ describe 'eastwood.js' do
   end
 
   describe 'eastwood_engine_path' do
-    it 'should be defined' do
-      context.eval( "typeof #{routes}.eastwood_engine_path" ).should eq( 'function' )
-    end
-    it 'should return the correct route' do
-      context.call( "#{routes}.eastwood_engine_path" ).should eq( '/eastwood' )
+    it 'should not be defined' do
+      context.eval( "typeof #{routes}.eastwood_engine_path" ).should eq( 'undefined' )
     end
   end
 

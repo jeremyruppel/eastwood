@@ -14,6 +14,12 @@ module Eastwood
       end
 
       def named_routes
+        rails_routes.reject { |route| excludes.any? { |pattern| pattern.match( route ) } }
+      end
+
+      protected
+
+      def rails_routes
         ::Rails.application.routes.named_routes.routes
       end
     end

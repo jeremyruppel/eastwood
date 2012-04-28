@@ -47,7 +47,7 @@ RSpec::Matchers.define :delegate do |method|
   end
   chain :to do |receiver, method|
     @receiver, @method = receiver, method
-    @receiver.should_receive( @method ){ true }
+    @receiver.should_receive( @method ){ double( 'delegate' ).as_null_object }
   end
   description do
     "delegate ##{method} to #{@receiver}##{@method}"
