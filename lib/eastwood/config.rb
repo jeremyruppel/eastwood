@@ -32,6 +32,10 @@ module Eastwood
         @@exports ||= Hash.new
       end
 
+      def excludes
+        @@excludes ||= [ /eastwood_engine/ ]
+      end
+
       mattr_accessor :default_route_format
       mattr_accessor :javascript_route_style
       mattr_accessor :javascript_namespace

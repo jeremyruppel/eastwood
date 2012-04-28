@@ -74,15 +74,8 @@ describe 'sever routes' do
   let( :context ){ ::Rails.application.assets.context_class.new nil, nil, nil }
 
   describe 'eastwood_engine' do
-    subject { context.server_routes[ :eastwood_engine ] }
-
-    its( :name  ){ should eq( 'eastwood_engine' ) }
-    its( :path  ){ should eq( '/eastwood' ) }
-    its( :parts ){ should eq( [ ] ) }
-
-    its( :coffee_name ){ should eq( 'eastwood_engine_path' ) }
-    its( :coffee_path ){ should eq( '/eastwood' ) }
-    its( :coffee_args ){ should eq( '' ) }
+    subject { context.server_routes }
+    it { should_not have_key( :eastwood_engine ) }
   end
 
   describe 'match' do
