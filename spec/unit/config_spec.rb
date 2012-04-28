@@ -24,6 +24,12 @@ describe Eastwood do
     end
   end
 
+  describe '#excludes' do
+    it { should respond_to( :excludes ) }
+    its( :excludes ){ should be_an( Array ) }
+    its( :excludes ){ should include( /eastwood_engine/ ) }
+  end
+
   describe '#hash' do
     it { should respond_to( :hash ) }
 

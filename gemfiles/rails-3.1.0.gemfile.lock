@@ -1,7 +1,7 @@
 PATH
   remote: /Users/jeremyruppel/Git/eastwood
   specs:
-    eastwood (0.3.8)
+    eastwood (0.4.0)
       coffee-rails
       rails (>= 3.1.0)
 
