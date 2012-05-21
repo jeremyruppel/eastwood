@@ -14,4 +14,4 @@ app.Utils =
     @reduce path.split( '.' ), object, ( memo, key ) -> memo[ key ]
 
   interpolate : ( string, context={} ) ->
-    string.replace /%{(\w+)}/g, ( _, key ) -> context[ key ]
+    string.replace /%{(\w+)}/g, ( match, key ) -> context[ key ] || match

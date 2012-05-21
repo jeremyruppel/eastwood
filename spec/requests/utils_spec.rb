@@ -46,8 +46,8 @@ describe 'eastwood/utils.js' do
       context.eval( "#{method}('sup %{bar} %{foo}?', #{object})" ).should eq( 'sup bar!! foo!?' )
     end
 
-    it 'should handle missing keys' do
-      context.eval( "#{method}('sup %{baz}?', #{object})" ).should eq( 'sup undefined?' )
+    it 'should ignore missing keys' do
+      context.eval( "#{method}('sup %{baz}?', #{object})" ).should eq( 'sup %{baz}?' )
     end
   end
 end
