@@ -30,5 +30,9 @@ describe 'eastwood/i18n.js' do
     it 'should provide hello world' do
       context.eval( "#{namespace}.I18n.t( 'hello' )" ).should eq( 'Hello world' )
     end
+
+    it 'should provide nested translations' do
+      context.eval( "#{namespace}.I18n.t( 'time.pm' )" ).should eq( 'pm' )
+    end
   end
 end
