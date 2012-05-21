@@ -1,4 +1,9 @@
-( @Eastwood ||= { } ).Utils =
+###*
+ * eastwood.js - <%= app %>
+###
+app = <%= target %>.<%= app %> ||= { }
+
+app.Utils =
 
   reduce : ( array, initial, iterator ) ->
     memo = initial

@@ -10,4 +10,4 @@ app = <%= target %>.<%= app %> ||= { }
 app.I18n = <%= I18n.backend.send( :translations ).to_json %>
 
 app.I18n.locale = "<%= I18n.locale %>"
-app.I18n.t = ( key ) -> Eastwood.Utils.keypath key, @[ @locale ]
+app.I18n.t = ( key ) -> app.Utils.keypath key, @[ @locale ]
