@@ -34,5 +34,12 @@ describe 'eastwood/i18n.js' do
     it 'should provide nested translations' do
       context.eval( "#{namespace}.t( 'time.pm' )" ).should eq( 'pm' )
     end
+
+    it 'should interpolate translations' do
+      key = "activerecord.errors.messages.record_invalid"
+      obj = "{errors:'foo!'}"
+
+      context.eval( "#{namespace}.t( '#{key}', #{obj})" ).should eq( 'Validation failed: foo!' )
+    end
   end
 end
