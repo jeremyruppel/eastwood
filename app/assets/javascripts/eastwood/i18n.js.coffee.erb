@@ -1,0 +1,18 @@
+#= require eastwood/utils
+
+###*
+ * eastwood.js - <%= app %>
+###
+app = <%= target %>.<%= app %> ||= { }
+
+<% I18n.backend.send :init_translations %>
+
+app.I18n = <%= I18n.backend.send( :translations ).to_json %>
+
+app.I18n.locale = "<%= I18n.locale %>"
+app.I18n.t = ( key, context={} ) ->
+  try
+    string = app.Utils.keypath( key, @[ @locale ] )
+    app.Utils.interpolate string, context
+  catch error
+    "translation missing: #{@locale}.#{key}"

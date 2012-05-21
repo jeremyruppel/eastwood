@@ -10,7 +10,7 @@ module Eastwood
     end
 
     def target
-      env === 'test' ? '( @window = { } )' : 'window'
+      env === 'test' ? '( @window ||= { } )' : 'window'
     end
 
     def server_routes

@@ -53,7 +53,7 @@ describe 'the Sprockets context class' do
       before do
         subject.stub( :env ){ 'test' }
       end
-      its( :target ){ should eq( '( @window = { } )' ) }
+      its( :target ){ should eq( '( @window ||= { } )' ) }
     end
     context 'when #env is production' do
       before do

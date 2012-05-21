@@ -1,0 +1,17 @@
+###*
+ * eastwood.js - <%= app %>
+###
+app = <%= target %>.<%= app %> ||= { }
+
+app.Utils =
+
+  reduce : ( array, initial, iterator ) ->
+    memo = initial
+    memo = iterator memo, item for item in array
+    memo
+
+  keypath : ( path, object ) ->
+    @reduce path.split( '.' ), object, ( memo, key ) -> memo[ key ]
+
+  interpolate : ( string, context={} ) ->
+    string.replace /%{(\w+)}/g, ( match, key ) -> context[ key ] || match
