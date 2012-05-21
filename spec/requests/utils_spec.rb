@@ -33,4 +33,21 @@ describe 'eastwood/utils.js' do
       context.eval( "#{namespace}.keypath( 'foo.bar', {foo:{bar:'baz'}})" ).should eq( 'baz' )
     end
   end
+
+  describe 'interpolate' do
+    let( :method ){ "#{namespace}.interpolate"        }
+    let( :object ){ "{ foo : 'foo!', bar : 'bar!!' }" }
+
+    it 'should handle one key' do
+      context.eval( "#{method}('sup %{foo}?', #{object})" ).should eq( 'sup foo!?' )
+    end
+
+    it 'should handle two keys' do
+      context.eval( "#{method}('sup %{bar} %{foo}?', #{object})" ).should eq( 'sup bar!! foo!?' )
+    end
+
+    it 'should handle missing keys' do
+      context.eval( "#{method}('sup %{baz}?', #{object})" ).should eq( 'sup undefined?' )
+    end
+  end
 end
