@@ -41,5 +41,10 @@ describe 'eastwood/i18n.js' do
 
       context.eval( "#{namespace}.t( '#{key}', #{obj})" ).should eq( 'Validation failed: foo!' )
     end
+
+    it 'should handle missing translations' do
+      context.eval( "#{namespace}.t( 'foo' )"     ).should eq( 'translation missing: en.foo' )
+      context.eval( "#{namespace}.t( 'foo.bar' )" ).should eq( 'translation missing: en.foo.bar' )
+    end
   end
 end

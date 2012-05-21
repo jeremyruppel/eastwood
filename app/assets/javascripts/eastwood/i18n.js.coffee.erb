@@ -11,4 +11,8 @@ app.I18n = <%= I18n.backend.send( :translations ).to_json %>
 
 app.I18n.locale = "<%= I18n.locale %>"
 app.I18n.t = ( key, context={} ) ->
-  app.Utils.interpolate app.Utils.keypath( key, @[ @locale ] ), context
+  try
+    string = app.Utils.keypath( key, @[ @locale ] )
+    app.Utils.interpolate string, context
+  catch error
+    "translation missing: #{@locale}.#{key}"
