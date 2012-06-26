@@ -1,21 +1,18 @@
-Eastwood
-========
+# Eastwood
 
 > Start your client side out right.
 
 [![Build Status](https://secure.travis-ci.org/jeremyruppel/eastwood.png)](http://travis-ci.org/jeremyruppel/eastwood)
 [![Dependency Status](https://gemnasium.com/jeremyruppel/eastwood.png)](https://gemnasium.com/jeremyruppel/eastwood)
 
-About
------
+## About
 
 Eastwood brings your Rails routes to the client side in a slick, unobtrusive way.
 
 As of v0.3.2, Eastwood supports Rails >= 3.1.0, which means both `ActionDispatch`
 and `Journey` routers are supported.
 
-Usage
------
+## Usage
 
 Include eastwood in your gemfile:
 
@@ -39,8 +36,7 @@ Finally, require `eastwood.js` in your javascript manifest.
 #= require eastwood
 ```
 
-Routes
-------
+## Routes
 
 Eastwood will give you a namespace for your application, as well as all of your named
 route helpers converted to javascript functions. If your app is named **MyApp**, requiring
@@ -61,8 +57,7 @@ MyApp : {
 
 > This namespace is also a great place to put the rest of your client-side code!
 
-Configuration
--------------
+## Configuration
 
 Create a `config/initializers/eastwood.rb` and you can do the following:
 
@@ -75,8 +70,7 @@ Eastwood.configure do |config|
 end
 ```
 
-Hashes
-------
+## Hashes
 
 Eastwood can include arbitrary "routes" for the client-side too. In your configure block:
 
@@ -90,8 +84,7 @@ end
 This will give you `foo_hash` and `bar_hash` as functions in `MyApp.routes`, with all segments
 interpolated as you would expect.
 
-Exports
--------
+## Exports
 
 Eastwood can also export arbitrary values to the client side:
 
@@ -101,8 +94,7 @@ Eastwood.configure do |config|
 end
 ```
 
-Pro Tips
---------
+## Pro Tips
 
 Eastwood plays *really* well with [Sammy.js](http://sammyjs.org/):
 
@@ -133,32 +125,24 @@ functions like first-class citizens like, *ahem*, [walrus](https://github.com/je
 </li>
 ```
 
-Reloading
----------
+## I18n (work in progress)
+
+Eastwood will also be able to export your i18n to the client side. Simply:
+
+``` coffee
+#= require eastwood/i18n
+```
+
+And your translations will be attached to your namespace. Afterwards, use
+`MyApp.t( 'key.to.translate' )` to look up translations. `t` accepts a hash
+as a second parameter to use as the context for any interpolation the
+translation string needs.
+
+## Reloading
 
 Since Sprockets [doesn't know when your context helpers change](https://github.com/sstephenson/sprockets/blob/master/lib/sprockets/base.rb#L35), you may
 need to clear out your sprockets cache when you change your routes. Just run `rake tmp:clear`.
 
-License
--------
+## License
 
-> Copyright 2012 Jeremy Ruppel
->
-> Permission is hereby granted, free of charge, to any person obtaining
-> a copy of this software and associated documentation files (the
-> "Software"), to deal in the Software without restriction, including
-> without limitation the rights to use, copy, modify, merge, publish,
-> distribute, sublicense, and/or sell copies of the Software, and to
-> permit persons to whom the Software is furnished to do so, subject to
-> the following conditions:
->
-> The above copyright notice and this permission notice shall be
-> included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-> MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-> NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-> LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-> OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-> WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Eastwood is released under the MIT license.
