@@ -19,11 +19,15 @@ Usage
 
 Include eastwood in your gemfile:
 
-	gem 'eastwood'
+``` rb
+gem 'eastwood'
+```
 
 Then mount the engine wherever you want:
 
-	mount Eastwood::Engine => '/eastwood
+``` rb
+mount Eastwood::Engine => '/eastwood
+```
 
 > The place you mount the engine actually doesn't make much of a difference right now.
 > The engine itself has no routes, just a single javascript asset you can include
@@ -31,7 +35,9 @@ Then mount the engine wherever you want:
 
 Finally, require `eastwood.js` in your javascript manifest.
 
-	#= require eastwood
+``` coffee
+#= require eastwood
+```
 
 Routes
 ------
@@ -40,16 +46,18 @@ Eastwood will give you a namespace for your application, as well as all of your 
 route helpers converted to javascript functions. If your app is named **MyApp**, requiring
 the Eastwood javascript will give you something like this available on `window`:
 
-	MyApp : {
-		env : 'development',
-		routes : {
-			new_user_path : function( format ){
-				// javascript to return you a string route, with segment keys
-				// interpolated, and including either the format you specify
-				// or the default 'json'.
-			}
+``` js
+MyApp : {
+	env : 'development',
+	routes : {
+		new_user_path : function( format ){
+			// javascript to return you a string route, with segment keys
+			// interpolated, and including either the format you specify
+			// or the default 'json'.
 		}
 	}
+}
+```
 
 > This namespace is also a great place to put the rest of your client-side code!
 
@@ -58,19 +66,23 @@ Configuration
 
 Create a `config/initializers/eastwood.rb` and you can do the following:
 
-	Eastwood.configure do |config|
-		config.default_route_format = :json # or :xml, 'html', etc to change it, or false or '' to leave it blank
-	end
+``` rb
+Eastwood.configure do |config|
+	config.default_route_format = :json # or :xml, 'html', etc to change it, or false or '' to leave it blank
+end
+```
 
 Hashes
 ------
 
 Eastwood can include arbitrary "routes" for the client-side too. In your configure block:
 
-	Eastwood.configure do |config|
-		config.hash :foo, '#/foo'
-		config.hash :bar, '/bar/:id'
-	end
+``` rb
+Eastwood.configure do |config|
+	config.hash :foo, '#/foo'
+	config.hash :bar, '/bar/:id'
+end
+```
 
 This will give you `foo_hash` and `bar_hash` as functions in `MyApp.routes`, with all segments
 interpolated as you would expect.
@@ -80,29 +92,35 @@ Exports
 
 Eastwood can also export arbitrary values to the client side:
 
-	Eastwood.configure do |config|
-		config.export :foo => 'bar', :baz => 123.45
-	end
+``` rb
+Eastwood.configure do |config|
+	config.export :foo => 'bar', :baz => 123.45
+end
+```
 
 Pro Tips
 --------
 
 Eastwood plays *really* well with [Sammy.js](http://sammyjs.org/):
 
-	# include all of our eastwood routes as sammy helpers
-	@helpers MyApp.routes
+``` coffee
+# include all of our eastwood routes as sammy helpers
+@helpers MyApp.routes
 
-	# ...
+# ...
 
-	# use our eastwood routes in the event context
-	@render @clients_path( 'wal' ), result, -> $( '#clients' ).html @content
+# use our eastwood routes in the event context
+@render @clients_path( 'wal' ), result, -> $( '#clients' ).html @content
+```
 
 Eastwood also plays really well with client-side templating solutions that treat
 functions like first-class citizens like, *ahem*, [walrus](https://github.com/jeremyruppel/walrus):
 
-	<li>
-		<a href="{{@clients_path( 'html' )}}">Clients</a>
-	</li>
+``` html
+<li>
+	<a href="{{@clients_path( 'html' )}}">Clients</a>
+</li>
+```
 
 Reloading
 ---------
