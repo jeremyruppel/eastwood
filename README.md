@@ -26,7 +26,7 @@ gem 'eastwood'
 Then mount the engine wherever you want:
 
 ``` rb
-mount Eastwood::Engine => '/eastwood
+mount Eastwood::Engine => '/eastwood'
 ```
 
 > The place you mount the engine actually doesn't make much of a difference right now.
@@ -48,14 +48,14 @@ the Eastwood javascript will give you something like this available on `window`:
 
 ``` js
 MyApp : {
-	env : 'development',
-	routes : {
-		new_user_path : function( format ){
-			// javascript to return you a string route, with segment keys
-			// interpolated, and including either the format you specify
-			// or the default 'json'.
-		}
-	}
+  env : 'development',
+  routes : {
+    new_user_path : function( format ){
+      // javascript to return you a string route, with segment keys
+      // interpolated, and including either the format you specify
+      // or the default 'json'.
+    }
+  }
 }
 ```
 
@@ -68,7 +68,7 @@ Create a `config/initializers/eastwood.rb` and you can do the following:
 
 ``` rb
 Eastwood.configure do |config|
-	config.default_route_format = :json # or :xml, 'html', etc to change it, or false or '' to leave it blank
+  config.default_route_format = :json # or :xml, 'html', etc to change it, or false or '' to leave it blank
 end
 ```
 
@@ -79,8 +79,8 @@ Eastwood can include arbitrary "routes" for the client-side too. In your configu
 
 ``` rb
 Eastwood.configure do |config|
-	config.hash :foo, '#/foo'
-	config.hash :bar, '/bar/:id'
+  config.hash :foo, '#/foo'
+  config.hash :bar, '/bar/:id'
 end
 ```
 
@@ -94,7 +94,7 @@ Eastwood can also export arbitrary values to the client side:
 
 ``` rb
 Eastwood.configure do |config|
-	config.export :foo => 'bar', :baz => 123.45
+  config.export :foo => 'bar', :baz => 123.45
 end
 ```
 
@@ -113,12 +113,20 @@ Eastwood plays *really* well with [Sammy.js](http://sammyjs.org/):
 @render @clients_path( 'wal' ), result, -> $( '#clients' ).html @content
 ```
 
-Eastwood also plays really well with client-side templating solutions that treat
+It also plays well with backbone and friends with a little configuration:
+
+``` coffee
+# mix-in route helpers into backbone prototypes
+_( Backbone.Model.prototype  ).extend MyApp.routes
+_( Backbone.Router.prototype ).extend MyApp.routes
+```
+
+Eastwood even plays well with client-side templating solutions that treat
 functions like first-class citizens like, *ahem*, [walrus](https://github.com/jeremyruppel/walrus):
 
 ``` html
 <li>
-	<a href="{{@clients_path( 'html' )}}">Clients</a>
+  <a href="{{@clients_path( 'html' )}}">Clients</a>
 </li>
 ```
 
