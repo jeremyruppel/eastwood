@@ -68,7 +68,10 @@ Create a `config/initializers/eastwood.rb` and you can do the following:
 
 ``` rb
 Eastwood.configure do |config|
-  config.default_route_format = :json # or :xml, 'html', etc to change it, or false or '' to leave it blank
+  config.default_route_format = :json         # pass false or '' to omit it entirely
+  config.javascript_route_style = :underscore # or :camelcase
+  config.javascript_namespace = 'MyApp'       # defaults to your app name
+  config.excludes << /admin/                  # add patterns here to exclude routes from being exported
 end
 ```
 
